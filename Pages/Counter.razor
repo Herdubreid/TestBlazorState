@@ -1,0 +1,18 @@
+﻿@inherits BlazorStateComponent
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    CounterState CounterState => GetState<CounterState>();
+    private int currentCount => CounterState.Counter;
+
+    private void IncrementCount()
+    {
+        Mediator.Send(new CounterState.IncrementCounterAction { Amount = 5 });
+    }
+}
